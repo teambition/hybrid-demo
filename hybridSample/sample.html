@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+    .no-tap-delay {
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+    }
+    .button {
+        width: 200px;
+        margin: auto;
+        margin-bottom: 1px;
+        background-color: blue;
+        color: #fff;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+    }
+    .button:first-child {
+        margin-top: 40px;
+    }
+    .red {
+        background-color: red;
+    }
+	</style>
+    <script type='application/javascript' src='fastclick.js'></script>
+</head>
+<body>
+	<div id="theClick" class="button no-tap-delay">About 300ms</div>
+	<div id="theTap" class="button no-tap-delay">About</div>
+    <div id="showAlert" class="button red no-tap-delay">Alert</div>
+	<script>
+
+
+        /**
+         *
+         * NoClickDelay
+         * http://cubiq.org/
+         *
+         */
+        function NoClickDelay(el) {
+            this.element = el;
+            if( window.Touch ) this.element.addEventListener('touchstart', this, false);
+        }
+
+        NoClickDelay.prototype = {
+            handleEvent: function(e) {
+                switch(e.type) {
+                    case 'touchstart': this.onTouchStart(e); break;
+                    case 'touchmove': this.onTouchMove(e); break;
+                    case 'touchend': this.onTouchEnd(e); break;
+                }
+            },
+
+            onTouchStart: function(e) {
+                e.preventDefault();
+                this.moved = false;
+
+                this.element.addEventListener('touchmove', this, false);
+                this.element.addEventListener('touchend', this, false);
+            },
+
+            onTouchMove: function(e) {
+                this.moved = true;
+            },
+
+            onTouchEnd: function(e) {
+                this.element.removeEventListener('touchmove', this, false);
+                this.element.removeEventListener('touchend', this, false);
+
+                if( !this.moved ) {
+                    var theTarget = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+                    if(theTarget.nodeType == 3) theTarget = theTarget.parentNode;
+
+                    var theEvent = document.createEvent('MouseEvents');
+                    theEvent.initEvent('click', true, true);
+                    theTarget.dispatchEvent(theEvent);
+                }
+            }
+        };
+
+        function loaded() {
+            var theClick = document.getElementById('theClick');
+            var theTap = document.getElementById('theTap');
+            var showAlert = document.getElementById('showAlert');
+
+            new NoClickDelay(theTap);
+
+            /*  Benchmarking */
+            theClick.addEventListener('touchstart', function(e){
+                this.timeStart = e.timeStamp;
+            }, false);
+
+            theClick.addEventListener('click', function(e){
+                location.href = '/about';
+            }, false);
+
+            theTap.addEventListener('touchstart', function(e){
+                this.timeStart = e.timeStamp;
+            }, false);
+
+            theTap.addEventListener('click', function(e){
+                location.href = '/about';
+            }, false);
+
+            showAlert.addEventListener('click', function(e){
+                location.href = '/showAlert';
+            }, false);
+        }
+
+        window.addEventListener('load', function(){ setTimeout(function(){ loaded(); }, 100) }, true);
+
+    </script>
+</body>
+</html>

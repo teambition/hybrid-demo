@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		191CB89E181D441B00627949 /* sample.html in Resources */ = {isa = PBXBuildFile; fileRef = 191CB89D181D441B00627949 /* sample.html */; };
 		19C098B71817884100E03302 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C098B61817884100E03302 /* Foundation.framework */; };
 		19C098B91817884100E03302 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C098B81817884100E03302 /* CoreGraphics.framework */; };
 		19C098BB1817884100E03302 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C098BA1817884100E03302 /* UIKit.framework */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		191CB89D181D441B00627949 /* sample.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sample.html; sourceTree = "<group>"; };
 		19C098B31817884100E03302 /* hybridSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hybridSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19C098B61817884100E03302 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		19C098B81817884100E03302 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -122,6 +124,7 @@
 				19C098CB1817884100E03302 /* ViewController.h */,
 				19C098CC1817884100E03302 /* ViewController.m */,
 				19C098CE1817884100E03302 /* Images.xcassets */,
+				191CB89D181D441B00627949 /* sample.html */,
 				19C098BD1817884100E03302 /* Supporting Files */,
 			);
 			path = hybridSample;
@@ -204,7 +207,7 @@
 				ORGANIZATIONNAME = "Zhang Zeqing";
 				TargetAttributes = {
 					19C098D31817884100E03302 = {
-						TestTargetID = 19C098B21817884100E03302;
+						TestTargetID = 19C098B21817884100E03302 /* hybridSample */;
 					};
 				};
 			};
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19C098CF1817884100E03302 /* Images.xcassets in Resources */,
+				191CB89E181D441B00627949 /* sample.html in Resources */,
 				19C098C11817884100E03302 /* InfoPlist.strings in Resources */,
 				19C098CA1817884100E03302 /* Main.storyboard in Resources */,
 			);
@@ -464,6 +468,7 @@
 				19C098E71817884100E03302 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19C098E81817884100E03302 /* Build configuration list for PBXNativeTarget "hybridSampleTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +477,7 @@
 				19C098EA1817884100E03302 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,7 +9,7 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
+@property(nonatomic, strong) NSURLRequest *request;
 @end
 
 @implementation ViewController
@@ -19,7 +19,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
   
-    [self.webView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.google.com"]]];
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"html"];
+    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    [self.webView loadHTMLString:htmlString baseURL:nil];
     
 }
 
@@ -39,11 +41,26 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSLog(@"navigationType: %d, request: %@", navigationType, request);
-    if (navigationType == UIWebViewNavigationTypeOther) {
-        return YES;
+    self.request = request;
+    NSString *path = request.URL.relativePath;
+    if ([path isEqualToString:@"/about"]) {
+        [self showBlueView];
+        return NO;
+    } else if ([path isEqualToString:@"/showAlert"]) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Alert" message:@"This is alert view." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+        [av show];
+        return NO;
     }
-    [self showBlueView];
-    return NO;
+    return YES;
+}
+
+#pragma - 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showBlueView"]) {
+        UIViewController *viewController = segue.destinationViewController;
+        viewController.title = @"About";
+    }
 }
 
 @end

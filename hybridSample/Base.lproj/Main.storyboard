@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A598" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="WAP-K6-fIv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="WAP-K6-fIv">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--View Controller - Main-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
@@ -24,10 +24,20 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="nfW-G1-sdJ"/>
                                 </connections>
                             </webView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uve-ET-jLr">
+                                <rect key="frame" x="119" y="269" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Native Push">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kgl-h1-3Ia" kind="push" id="pnB-Gc-KMG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="YEh-mi-spV"/>
+                    <navigationItem key="navigationItem" title="Main" id="YEh-mi-spV"/>
                     <connections>
                         <outlet property="webView" destination="jJ9-2O-v6f" id="Gjf-HZ-hh5"/>
                         <segue destination="kgl-h1-3Ia" kind="push" identifier="showBlueView" id="bEy-p8-mtX"/>
@@ -37,7 +47,7 @@
             </objects>
             <point key="canvasLocation" x="339" y="89"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller - Native-->
         <scene sceneID="Uue-po-Vt0">
             <objects>
                 <viewController id="kgl-h1-3Ia" sceneMemberID="viewController">
@@ -50,7 +60,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.2228843522" green="0.76799156020000003" blue="0.79499315690000005" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="IMo-6P-bss"/>
+                    <navigationItem key="navigationItem" title="Native" id="IMo-6P-bss"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qy-Yy-XCx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -80,4 +90,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="pnB-Gc-KMG"/>
+    </inferredMetricsTieBreakers>
 </document>
